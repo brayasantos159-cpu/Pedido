@@ -6,12 +6,12 @@
     <title>Para o meu amor</title>
     
     <script>
-        // 1. Bloqueia o clique com o botão direito (Menu de Contexto)
+        // Bloqueia o clique com o botão direito
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // 2. Bloqueia atalhos de teclado comuns de desenvolvedores
+        // Bloqueia atalhos de teclado
         document.addEventListener('keydown', function(e) {
             if (e.key === 'F12' || e.keyCode === 123) {
                 e.preventDefault();
@@ -24,7 +24,7 @@
             }
         });
 
-        // 3. Bloqueia a seleção de texto e imagens
+        // Bloqueia a seleção de texto
         document.onselectstart = function() { return false; };
     </script>
     
@@ -60,8 +60,8 @@
         }
 
         img {
-            width: 230px;
-            height: 230px;
+            width: 220px;
+            height: 220px;
             object-fit: cover;
             border-radius: 15px;
             margin-bottom: 20px;
@@ -70,13 +70,13 @@
 
         h1 {
             color: #333333;
-            font-size: 26px;
+            font-size: 24px;
             margin-bottom: 15px;
         }
 
         p {
             color: #444444;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 1.5;
         }
 
@@ -98,9 +98,9 @@
         }
 
         button {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            padding: 12px 35px;
+            padding: 12px 30px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -153,8 +153,8 @@
 <body>
 
     <div id="question-container">
-        <!-- Link direto e confiável do GIF do urso -->
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y2ZHF3aTdtZHR6ODlsY3IydmExOHRxb3A4cnZyeXRsczV4ZjUzNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0h93752f6J9tijrh/giphy.gif" alt="Ursinho fofo">
+        <!-- GIF FIXO DO URSO PONTINHOS -->
+        <img src="https://media.tenor.com/ef20sFv8U9AAAAAC/milk-and-mocha-bear.gif" alt="Ursinho fofo com corações">
         
         <h1>Você aceita ser minha namorada?</h1>
         
@@ -167,8 +167,8 @@
     </div>
 
     <div id="success-container" class="hidden">
-        <!-- Link direto do GIF do abraço -->
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnh1NWZ3aG1zbmtmNXRxMnNmMmtic3VjczRpdGV3b3I1Y2ZkcHNwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6vh5eCXy362759287/giphy.gif" alt="Ursinhos se abraçando">
+        <!-- GIF FIXO DOS URSINHOS SE ABRAÇANDO -->
+        <img src="https://media.tenor.com/gU8125557aAAAAAC/bear-hug-milk-and-mocha.gif" alt="Ursinhos se abraçando">
         
         <h1>EBAAAAAAAA! Você me fez a pessoa mais feliz do mundo! ❤️</h1>
         <p>Prometo te fazer sorrir todos os dias e cuidar de você com todo o meu amor. Mal posso esperar para vivermos nossa história juntos!</p>
@@ -196,7 +196,8 @@
 
         let contadorFugas = 0;
 
-        function fugir() {
+        function fugir(e) {
+            if (e) e.preventDefault();
             btnNo.style.position = 'fixed';
             
             const windowWidth = window.innerWidth;
@@ -220,7 +221,8 @@
         }
 
         btnNo.addEventListener('mouseover', fugir);
-        btnNo.addEventListener('touchstart', fugir); 
+        btnNo.addEventListener('touchstart', fugir, { passive: false }); 
+        btnNo.addEventListener('click', fugir);
 
         btnYes.addEventListener('click', () => {
             questionContainer.classList.add('hidden');
