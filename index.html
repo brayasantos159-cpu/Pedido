@@ -13,35 +13,46 @@
 
         // 2. Bloqueia atalhos de teclado comuns de desenvolvedores
         document.addEventListener('keydown', function(e) {
-            // Bloqueia F12
             if (e.key === 'F12' || e.keyCode === 123) {
                 e.preventDefault();
             }
-            // Bloqueia Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
             if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
                 e.preventDefault();
             }
-            // Bloqueia Ctrl+U e Ctrl+S
             if (e.ctrlKey && (e.key === 'U' || e.key === 'S')) {
                 e.preventDefault();
             }
         });
 
-        // 3. Bloqueia a seleção de texto e imagens pelo mouse
+        // 3. Bloqueia a seleção de texto e imagens
         document.onselectstart = function() { return false; };
     </script>
     
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #e6e6fa; 
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             overflow: hidden; 
             text-align: center;
+        }
+
+        #question-container, #success-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
         }
 
         .hidden {
@@ -49,54 +60,47 @@
         }
 
         img {
-            width: 250px;
+            width: 230px;
+            height: 230px;
+            object-fit: cover;
             border-radius: 15px;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         h1 {
             color: #333333;
-            font-size: 28px;
-            margin-bottom: 20px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
+            font-size: 26px;
+            margin-bottom: 15px;
         }
 
         p {
             color: #444444;
             font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 20px;
             line-height: 1.5;
-            position: relative;
-            z-index: 10;
         }
 
         #mensagem-fuga {
             color: #dc3545;
             font-size: 18px;
             font-weight: bold;
-            min-height: 25px;
-            margin-bottom: 15px;
-            margin-top: 0;
+            min-height: 28px;
+            margin-bottom: 20px;
         }
 
         .buttons {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px; 
-            position: relative;
-            z-index: 10;
+            width: 100%;
+            min-height: 60px;
         }
 
         button {
             font-size: 20px;
             font-weight: bold;
-            padding: 12px 40px;
+            padding: 12px 35px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -107,6 +111,7 @@
         #btn-yes {
             background-color: #28a745; 
             color: white;
+            z-index: 10;
         }
 
         #btn-yes:hover {
@@ -116,7 +121,7 @@
         #btn-no {
             background-color: #dc3545; 
             color: white;
-            position: relative; 
+            z-index: 10;
         }
 
         #confetti-container {
@@ -148,7 +153,8 @@
 <body>
 
     <div id="question-container">
-        <img src="https://i.ibb.co/R4bQmkZX/urso.gif" alt="Ursinho fofo">
+        <!-- Link direto e confiável do GIF do urso -->
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y2ZHF3aTdtZHR6ODlsY3IydmExOHRxb3A4cnZyeXRsczV4ZjUzNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lq0h93752f6J9tijrh/giphy.gif" alt="Ursinho fofo">
         
         <h1>Você aceita ser minha namorada?</h1>
         
@@ -161,7 +167,8 @@
     </div>
 
     <div id="success-container" class="hidden">
-        <img src="https://i.ibb.co/8gc7Cpwn/urso2.gif" alt="Ursinhos se abraçando">
+        <!-- Link direto do GIF do abraço -->
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnh1NWZ3aG1zbmtmNXRxMnNmMmtic3VjczRpdGV3b3I1Y2ZkcHNwZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K6vh5eCXy362759287/giphy.gif" alt="Ursinhos se abraçando">
         
         <h1>EBAAAAAAAA! Você me fez a pessoa mais feliz do mundo! ❤️</h1>
         <p>Prometo te fazer sorrir todos os dias e cuidar de você com todo o meu amor. Mal posso esperar para vivermos nossa história juntos!</p>
